@@ -1,0 +1,12 @@
+services:
+    server:
+        build:
+            context: .
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports:
+            - '${SERVER_PORT}:80'
+        volumes:
+            - ./files:/files
+        environment:
+            - 'PHP_IDE_CONFIG=${PHP_IDE_CONFIG}'
