@@ -314,8 +314,7 @@ function print_index() : void
     {
         $length_info  = "";
     }
-
-echo <<<EOT
+    echo <<<EOT
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -325,62 +324,78 @@ echo <<<EOT
 </head>
 <body>
 <pre>
- === How To Upload === 
-You can upload files to this site via a simple HTTP POST, e.g. using curl:
-curl -F "file=@/path/to/your/file.jpg" $site_url
-
-Or if you want to pipe to curl *and* have a file extension, add a "filename":
-echo "hello" | curl -F "file=@-;filename=.txt" $site_url
-$length_info
-On Windows, you can use <a href="https://getsharex.com/">ShareX</a> and import <a href="$sharex_url">this</a> custom uploader.
-On Android, you can use an app called <a href="https://github.com/Rouji/Hupl">Hupl</a> with <a href="$hupl_url">this</a> uploader.
-
-
-Or simply choose a file and click "Upload" below:
-(Hint: If you're lucky, your browser may support drag-and-drop onto the file 
-selection input.)
-</pre>
-<form id="frm" method="post" enctype="multipart/form-data">
-<input type="file" name="file" id="file" />
-<input type="hidden" name="formatted" value="true" />
-<input type="submit" value="Upload"/>
-</form>
-<pre>
-
-
- === File Sizes etc. ===
-The maximum allowed file size is $max_size MiB.
-
-Files are kept for a minimum of $min_age, and a maximum of $max_age Days.
-
-How long a file is kept depends on its size. Larger files are deleted earlier 
-than small ones. This relation is non-linear and skewed in favour of small 
-files.
-
-The exact formula for determining the maximum age for a file is:
-
-MIN_AGE + (MAX_AGE - MIN_AGE) * (1-(FILE_SIZE/MAX_SIZE))^$decay
-
-
- === Source ===
-The PHP script used to provide this service is open source and available on 
-<a href="https://github.com/Rouji/single_php_filehost">GitHub</a>
-
-
- === Contact ===
-If you want to report abuse of this service, or have any other inquiries, 
-please write an email to $mail
+FrameNet Brasil media server
 </pre>
 </body>
 </html>
 EOT;
+
+//echo <<<EOT
+//<!DOCTYPE html>
+//<html lang="en">
+//<head>
+//    <title>Filehost</title>
+//    <meta name="description" content="Minimalistic service for sharing temporary files." />
+//    <meta name="viewport" content="width=device-width, initial-scale=1" />
+//</head>
+//<body>
+//<pre>
+// === How To Upload ===
+//You can upload files to this site via a simple HTTP POST, e.g. using curl:
+//curl -F "file=@/path/to/your/file.jpg" $site_url
+//
+//Or if you want to pipe to curl *and* have a file extension, add a "filename":
+//echo "hello" | curl -F "file=@-;filename=.txt" $site_url
+//$length_info
+//On Windows, you can use <a href="https://getsharex.com/">ShareX</a> and import <a href="$sharex_url">this</a> custom uploader.
+//On Android, you can use an app called <a href="https://github.com/Rouji/Hupl">Hupl</a> with <a href="$hupl_url">this</a> uploader.
+//
+//
+//Or simply choose a file and click "Upload" below:
+//(Hint: If you're lucky, your browser may support drag-and-drop onto the file
+//selection input.)
+//</pre>
+//<form id="frm" method="post" enctype="multipart/form-data">
+//<input type="file" name="file" id="file" />
+//<input type="hidden" name="formatted" value="true" />
+//<input type="submit" value="Upload"/>
+//</form>
+//<pre>
+//
+//
+// === File Sizes etc. ===
+//The maximum allowed file size is $max_size MiB.
+//
+//Files are kept for a minimum of $min_age, and a maximum of $max_age Days.
+//
+//How long a file is kept depends on its size. Larger files are deleted earlier
+//than small ones. This relation is non-linear and skewed in favour of small
+//files.
+//
+//The exact formula for determining the maximum age for a file is:
+//
+//MIN_AGE + (MAX_AGE - MIN_AGE) * (1-(FILE_SIZE/MAX_SIZE))^$decay
+//
+//
+// === Source ===
+//The PHP script used to provide this service is open source and available on
+//<a href="https://github.com/Rouji/single_php_filehost">GitHub</a>
+//
+//
+// === Contact ===
+//If you want to report abuse of this service, or have any other inquiries,
+//please write an email to $mail
+//</pre>
+//</body>
+//</html>
+//EOT;
 }
 
-file_put_contents(
-    CONFIG::LOG_PATH,
-    print_r($_FILES, true) . "\n",
-    FILE_APPEND
-);
+//file_put_contents(
+//    CONFIG::LOG_PATH,
+//    print_r($_FILES, true) . "\n",
+//    FILE_APPEND
+//);
 // decide what to do, based on POST parameters etc.
 if (isset($_FILES['file']['name']) &&
     isset($_FILES['file']['tmp_name']) &&
