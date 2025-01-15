@@ -8,5 +8,7 @@ services:
             - '${SERVER_PORT}:80'
         volumes:
             - ./files:/files
+            - ./srv:/srv
+            - ./log:/log
         environment:
             - 'PHP_IDE_CONFIG=${PHP_IDE_CONFIG}'
